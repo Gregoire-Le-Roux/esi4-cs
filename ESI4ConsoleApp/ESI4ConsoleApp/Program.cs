@@ -91,3 +91,39 @@ class MaClasse // Par défaut public
 // Autorise l'accès pour les autres membres du type et pour tous les types héritant de celui-ci même en dehors de l'"assembly"
 
 // protected internal
+*/
+
+/*
+GeoPoint g = new GeoPoint();
+
+
+struct GeoPoint
+{
+    double Lat;
+    double Long;
+    public GeoPoint()
+    {
+        this.Lat = 1; // Surchage de constructeur car pas le même type que celui par défaut
+        this.Long = 45;
+    }
+}
+*/
+
+// C'est un type value, une class primitive
+// Elles ne supportent pas l'héritage
+
+// Elles peuvent posséder tous les membres d'une classe à l'exception d'un constructeur
+// sans paramètres, d'un destructeur et de membres virtuels
+
+/*
+public class Class1
+{
+    public int MyProperty { get; set; }
+    public Class1()
+    {
+        this.MyProperty = 1;
+    }
+}
+
+*/
+
