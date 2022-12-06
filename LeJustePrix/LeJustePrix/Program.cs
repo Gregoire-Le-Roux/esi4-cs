@@ -1,4 +1,5 @@
 ﻿const int MIN_PRIX = 1, MAX_PRIX = 1000;
+int meilleurScore = 0;
 int menu = 0;
 
 // Menu qui permet à l'utilisateur de sélectionner ce qu'il veut faire entre les options disponibles
@@ -8,6 +9,7 @@ while(menu != 2)
         "Un nombre est généré aléatoirement entre 1 et 1000 et vous devez le trouver avec le moins d'essais possible.");
     Console.WriteLine("1.Jouer");
     Console.WriteLine("2.Quitter"); 
+    Console.WriteLine($"\nMeilleur score : {meilleurScore}");
     string input = Console.ReadLine();
     if (int.TryParse(input, out menu))
     {
@@ -27,7 +29,7 @@ while(menu != 2)
 
 
 // La fonction Jouer permet de demander à l'utilisateur un prix et cela jusqu'à qu'il trouve le juste prix
-static void Jouer ()
+void Jouer ()
 {
     Random random = new Random(); // Le random de C# est basé sur l'horloge du système
     int leJustePrix = random.Next(MIN_PRIX, MAX_PRIX);
@@ -44,6 +46,7 @@ static void Jouer ()
             if (prix == leJustePrix)
             {
                 Console.WriteLine($"Vous avez trouvé le juste prix en {compteurEssai} essais!");
+                if (meilleurScore == 0 || compteurEssai < meilleurScore) meilleurScore = compteurEssai;
             }
             else if (prix > leJustePrix)
             {
