@@ -10,3 +10,5 @@ Il y a 3 modes de jeu dans ce projet :
   - Mode jouer jusqu'à perdre, tant que l'utilisateur trouve le mot en moins 6 essais, il continue d'avoir des mots à la chaîne jusqu'à ne pas réussir.
 
 Possibilité de voir ses scores sur les différents modes de jeu. (avec des petites surprises pour les plus forts)
+
+Pour build le projet pour la production, faire la commannde : ```dotnet publish -c Release -r win10-x64```. Ensuite l'éxecutable se trouve dans le dossier ``` Wordle\Wordle\bin\Release\net6.0\win10-x64 ``` et il y a le fichier ```Wordle.exe```.
