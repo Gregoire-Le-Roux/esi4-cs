@@ -12,3 +12,7 @@ Il y a 3 modes de jeu dans ce projet :
 Possibilité de voir ses scores sur les différents modes de jeu et de les exporter dans un fichier txt. (avec des petites surprises pour les plus forts)
 
 Pour build le projet pour la production, faire la commannde : ```dotnet publish -c Release -r win10-x64```. Ensuite l'éxecutable se trouve dans le dossier ``` Wordle\Wordle\bin\Release\net6.0\win10-x64 ``` et il y a le fichier ```Wordle.exe```.
+
+### **Projet API**
+
+Le projet API se trouve dans le dossier ```school-api``` et tout le contexte / documentation du projet se trouve dans ce dossier.
