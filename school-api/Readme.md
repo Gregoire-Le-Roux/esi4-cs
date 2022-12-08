@@ -6,7 +6,7 @@ Ce projet est une web API écrit en C# et le principe est que nous pouvons avoir
 Il y a des étudiants inscrits à une seule même école et ils sont assignés dans une classe dans cette école.
 
 Ci-dessous un diagramme récapitulatif des tables et de leurs relations.
-![image](https://user-images.githubusercontent.com/84314581/206234996-b7a830c2-74b8-4b02-8c3d-4a47caa30a93.png)
+![image](https://user-images.githubusercontent.com/84314581/206400831-d5798532-a62f-4dbf-8f55-55e29b93b323.png)
 
 ## Mise en place du projet
 
