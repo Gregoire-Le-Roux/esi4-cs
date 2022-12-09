@@ -4,22 +4,22 @@ namespace web_api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StudentController : ControllerBase
+public class SchoolController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
 
-    public StudentController(ApplicationDbContext dbContext)
+    public SchoolController(ApplicationDbContext dbContext)
     {
         this._context = dbContext;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Student>>> GetStudents()
+    public async Task<ActionResult<List<School>>> GetSchools()
     {
-        var students = _context.Students;
-        if(students != null)
+        var schools = _context.Schools;
+        if(schools != null)
         {
-            return Ok(students);
+            return Ok(schools);
         } else
         {
             return NotFound();
@@ -29,12 +29,12 @@ public class StudentController : ControllerBase
 
     
     [HttpGet("{Id}")]
-    public async Task<ActionResult<List<Student>>> GetStudentById(int Id)
+    public async Task<ActionResult<School>> GetSchoolById(int Id)
     {
-        var student = await _context.Students.FindAsync(Id);
-        if(student != null)
+        var school = await _context.Schools.FindAsync(Id);
+        if(school != null)
         {
-            return Ok(student);
+            return Ok(school);
         } else
         {
             return NotFound();
@@ -42,31 +42,44 @@ public class StudentController : ControllerBase
     }
 
 
-    [HttpPost("createStudent")]
-    public async Task<ActionResult<List<Student>>> CreateStudent([FromBody] Student student)
+    [HttpPost("createSchool")]
+    public async Task<ActionResult<School>> CreateSchool(string name)
     {
-        await _context.Students.AddAsync(student);
-        await _context.SaveChangesAsync();
-        return Ok(_context.Students);
+        if (name != null)
+        {
+            School school = new School { Name = name };
+            await _context.Schools.AddAsync(school);
+            await _context.SaveChangesAsync();
+            return Ok(school);
+        } else
+        {
+            return BadRequest();
+        }
     }
 
-    [HttpPost("updateStudent")]
-    public async Task<ActionResult<List<Student>>> UpdateStudent([FromBody] Student student)
+    [HttpPost("updateSchool")]
+    public async Task<ActionResult<School>> UpdateSchool(School school)
     {
-        _context.Students.Update(student);
-        await _context.SaveChangesAsync();
-        return Ok(_context.Students);
+        if(school != null)
+        {
+            _context.Schools.Update(school);
+            await _context.SaveChangesAsync();
+            return Ok(school);
+        } else
+        {
+            return BadRequest();
+        }
     }
 
     [HttpDelete("{Id}")]
-    public async Task<ActionResult<List<Student>>> DeleteStudent(int Id)
+    public async Task<ActionResult<List<School>>> DeleteSchool(int Id)
     {
-        Student student = await _context.Students.FindAsync(Id);
-        if(student != null)
+        School school = await _context.Schools.FindAsync(Id);
+        if(school != null)
         {
-            _context.Students.Remove(student);
+            _context.Schools.Remove(school);
             await _context.SaveChangesAsync();
-            return Ok(_context.Students);
+            return Ok(_context.Schools);
         } else
         {
             return NotFound();

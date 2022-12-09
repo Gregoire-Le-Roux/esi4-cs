@@ -29,7 +29,7 @@ public class TeacherController : ControllerBase
 
     
     [HttpGet("{Id}")]
-    public async Task<ActionResult<List<Teacher>>> GetTeacherById(int Id)
+    public async Task<ActionResult<Teacher>> GetTeacherById(int Id)
     {
         var teacher = await _context.Teachers.FindAsync(Id);
         if(teacher != null)
@@ -43,19 +43,32 @@ public class TeacherController : ControllerBase
 
 
     [HttpPost("createTeacher")]
-    public async Task<ActionResult<List<Teacher>>> CreateTeacher([FromBody] Teacher teacher)
+    public async Task<ActionResult<Teacher>> CreateTeacher(string firstname, string lastname, int age)
     {
-        await _context.Teachers.AddAsync(teacher);
-        await _context.SaveChangesAsync();
-        return Ok(_context.Teachers);
+        if (firstname != null && lastname != null && age != 0)
+        {
+            Teacher teacher = new Teacher { Firstname = firstname, Lastname = lastname, Age = age };
+            await _context.Teachers.AddAsync(teacher);
+            await _context.SaveChangesAsync();
+            return Ok(teacher);
+        } else
+        {
+            return BadRequest();
+        }
     }
 
     [HttpPost("updateTeacher")]
-    public async Task<ActionResult<List<Teacher>>> UpdateTeacher([FromBody] Teacher teacher)
+    public async Task<ActionResult<Teacher>> UpdateTeacher(Teacher teacher)
     {
-        _context.Teachers.Update(teacher);
-        await _context.SaveChangesAsync();
-        return Ok(_context.Teachers);
+        if(teacher != null)
+        {
+            _context.Teachers.Update(teacher);
+            await _context.SaveChangesAsync();
+            return Ok(teacher);
+        } else
+        {
+            return BadRequest();
+        }
     }
 
     [HttpDelete("{Id}")]
